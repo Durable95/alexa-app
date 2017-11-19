@@ -14,7 +14,7 @@ abstract class BaseTemplate
         return [
             'type' => $this->getType(),
 			'backButton' => $this->backButton,
-			'token' => $this->getToken()
+			'token' => $this->token
         ];
     }
 }
