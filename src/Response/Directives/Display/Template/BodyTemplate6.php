@@ -5,29 +5,33 @@ namespace Develpr\AlexaApp\Response\Directives\Dialog\Template;
 class BodyTemplate6 extends BaseTemplate
 {
     const TYPE = 'BodyTemplate6';
-	private $backgroundImage = '';
-	private $textContent = '';
+	private $backgroundImage = null;
+	private $textContent = null;
 
     public function getType()
     {
         return $this::TYPE;
     }
 	
-	public function setBackgroundImage($backgroundImage) {
-		$this->backgroundImage = $backgroundImage;
+	public function setBackgroundImage($description, $backgroundImage) {
+		$this->backgroundImage = new BackgroundImage($description, $backgroundImage);
 	}
 	
-	public function setTextContent($textContent) {
-		$this->textContent = $textContent;
+	public function setTextContent($type, $text) {
+		if ($this->textContent == null) {
+			$this->textContent = new TextContent();
+		}
+		
+		$this->textContent->addItem($type, $text);
 	}
 
     public function toArray()
     {
         return array_merge([
-            'backgroundImage' => $this->backgroundImage,
+            'backgroundImage' => $this->backgroundImage->toArray(),
             'title' => 'string',
             'image' => 'Image',
-            'textContent' => $this->textContent
+            'textContent' => $this->textContent->toArray()
         ], parent::toArray());
     }
 }
