@@ -29,7 +29,6 @@ class BodyTemplate3 extends BaseTemplate
     {
         return array_merge([
             'backgroundImage' => $this->backgroundImage->toArray(),
-            'title' => 'string',
             'image' => 'Image',
             'textContent' => $this->textContent->toArray()
         ], parent::toArray());
