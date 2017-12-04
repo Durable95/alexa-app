@@ -2,9 +2,9 @@
 
 namespace Develpr\AlexaApp\Response\Directives\Dialog\Template;
 
-class BodyTemplate6 extends BaseTemplate
+class BodyTemplate3 extends BaseTemplate
 {
-    const TYPE = 'BodyTemplate6';
+    const TYPE = 'BodyTemplate3';
 	private $backgroundImage = null;
 	private $textContent = null;
 
@@ -29,6 +29,7 @@ class BodyTemplate6 extends BaseTemplate
     {
         return array_merge([
             'backgroundImage' => $this->backgroundImage->toArray(),
+            'title' => 'string',
             'image' => 'Image',
             'textContent' => $this->textContent->toArray()
         ], parent::toArray());
