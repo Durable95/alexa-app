@@ -5,17 +5,14 @@ namespace Develpr\AlexaApp\Response\Directives\Dialog\Template;
 class BodyTemplate3 extends BaseTemplate
 {
     const TYPE = 'BodyTemplate3';
-	private $backgroundImage = null;
+	
 	private $textContent = null;
+	private $image = null;
 
     public function getType()
     {
         return $this::TYPE;
     }
-	
-	public function setBackgroundImage($description, $backgroundImage) {
-		$this->backgroundImage = new BackgroundImage($description, $backgroundImage);
-	}
 	
 	public function setTextContent($type, $text) {
 		if ($this->textContent == null) {
@@ -24,12 +21,15 @@ class BodyTemplate3 extends BaseTemplate
 		
 		$this->textContent->addItem($type, $text);
 	}
+	
+	public function setImage($description, $image) {
+		$this->image = new BackgroundImage($description, $image);
+	}
 
     public function toArray()
     {
         return array_merge([
-            'backgroundImage' => $this->backgroundImage->toArray(),
-            'image' => 'Image',
+            'image' => $this->image->toArray(),
             'textContent' => $this->textContent->toArray()
         ], parent::toArray());
     }

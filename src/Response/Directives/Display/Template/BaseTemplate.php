@@ -9,6 +9,7 @@ abstract class BaseTemplate
 	public $backButton = 'HIDDEN';
 	public $token = 'string';
 	public $title = 'string';
+	private $backgroundImage = null;
 	
 	public function setToken($token) {
 		$this->token = $token;
@@ -23,6 +24,10 @@ abstract class BaseTemplate
 	public function getTitle() {
 		return $this->title;
 	}
+	
+	public function setBackgroundImage($description, $backgroundImage) {
+		$this->backgroundImage = new BackgroundImage($description, $backgroundImage);
+	}
 
 	public function toArray()
     {
@@ -30,7 +35,8 @@ abstract class BaseTemplate
             'type' => $this->getType(),
 			'backButton' => $this->backButton,
 			'token' => $this->token,
-			'title' => $this->title
+			'title' => $this->title,
+			'backgroundImage' => $this->backgroundImage->toArray()
         ];
     }
 }
