@@ -7,7 +7,7 @@ class TextContent
 	public $textContents = array();
 	
 	public function addItem($type, $text) {
-		$this->textContents[$type] = new TextContentItem($text);
+		$this->textContents[$type] = $text;
 	}
 
     public function toArray()

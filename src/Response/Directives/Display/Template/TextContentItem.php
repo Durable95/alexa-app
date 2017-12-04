@@ -4,17 +4,16 @@ namespace Develpr\AlexaApp\Response\Directives\Dialog\Template;
 
 class TextContentItem
 {
-    const TYPE = 'PlainText';
-	public $text = '';
-
-    public function getType()
-    {
-        return $this::TYPE;
-    }
+	const TYPE_RICHTEXT = 'RichText';
+	const TYPE_PLAINTEXT = 'PlainText';
 	
-	public function __construct($text)
+	public $text = '';
+	public $type = 'PlainText';
+	
+	public function __construct($text, $type = TextContentItem::TYPE_PLAINTEXT)
     {
         $this->text = $text;
+        $this->type = $type;
     }
 
 	public function setText($text) {
@@ -24,7 +23,7 @@ class TextContentItem
     public function toArray()
     {
         return [
-            'type' => $this->getType(),
+            'type' => $this->type,
             'text' => $this->text
         ];
     }
