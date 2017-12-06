@@ -24,7 +24,6 @@ class BodyTemplate1 extends BaseTemplate
     {
         return array_merge([
             'title' => 'string',
-            'image' => 'Image',
             'textContent' => $this->textContent->toArray()
         ], parent::toArray());
     }

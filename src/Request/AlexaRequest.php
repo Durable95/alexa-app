@@ -182,7 +182,7 @@ class AlexaRequest extends Request implements \Develpr\AlexaApp\Contracts\AlexaR
      *
      * @return mixed|null
      */
-    public function slot($slotKey, $default = null)
+    public function slot($slotKey, $default = null, $getId = false)
     {
         if (!$this->processed) {
             $this->process();
@@ -193,8 +193,21 @@ class AlexaRequest extends Request implements \Develpr\AlexaApp\Contracts\AlexaR
         if (!$key_exists) {
             return $default;
         }
-
-        return (array_key_exists('value', $this->slots[$slotKey])) ? $this->slots[$slotKey]['value'] : $default;
+		
+		if ($getId) {
+			if (array_key_exists('value', $this->slots[$slotKey])) {
+				$resolutions = $this->slots[$slotKey]['resolutions'];
+				if (isset($resolutions['resolutionsPerAuthority'][0]['values'][0]['value']['id'])) {
+					return $resolutions['resolutionsPerAuthority'][0]['values'][0]['value']['id'];
+				}
+				
+				
+			}
+		} else {
+			return (array_key_exists('value', $this->slots[$slotKey])) ? $this->slots[$slotKey]['value'] : $default;
+		}
+		
+		return $default;
     }
 
     /**
